@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Post;
 use Visitor;
-
+use Carbon\Carbon;
 
 use App\WpUser;
 use App\Category;
@@ -220,7 +220,7 @@ class AdminPagesController extends Controller
         if(auth()->user()->category=="Admin" || auth()->user()->category=="Editor")
         {
             $post=Post::find($postid);
-            return view('adminpanel.makecontributor', compact('post'));
+            return view('adminpanel.makecontributor', compact('post')); 
         }
         else
         {
@@ -235,6 +235,7 @@ class AdminPagesController extends Controller
         {
             $post=Post::find($postid);
             $post->publication_status="Published";
+            $post->published_at=Carbon::now();
             $post->save();
             return redirect('/backend/pendings');
         }

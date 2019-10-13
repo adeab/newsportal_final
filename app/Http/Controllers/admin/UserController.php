@@ -116,6 +116,7 @@ class UserController extends Controller
             foreach($posts as $post)
             {
                 $post->publication_status="Published";
+                $post->published_at=Carbon::now();
                 $post->user_id=$user->id;
                 $post->save();
             }
@@ -132,6 +133,7 @@ class UserController extends Controller
             }
             $selectedpost=Post::find($postid);
             $selectedpost->publication_status="Published";
+            $selectedpost->published_at=Carbon::now();
             $selectedpost->save();
 
         }

@@ -66,8 +66,18 @@ $(document).ready(function(){
            <i class="far fa-user" data-toggle="dropdown"></i>
             <span class="caret"></span>
             <ul class="dropdown-menu">
-              <li style="float:none;"><button type="button" class="btn ">login</button></li>
-              <li><button type="button" class="btn ">logout</button></li>
+              @if (Auth::check())
+              <li class="m_2">
+                  <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+              </li>
+              @else
+                <li style="float:none;"><a href="{{url('/auth/redirect/facebook')}}"><i class="fa fa-facebook"></i>Login with Facebook</a></li>
+                {{-- <li><button type="button" class="btn ">logout</button></li> --}}
+              @endif
+              
               
             </ul>
         </div>

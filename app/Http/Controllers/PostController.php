@@ -70,6 +70,7 @@ class PostController extends Controller
         $post->category_id=$request->category;
         $post->seo_keywords=$request->seokey;
         $post->tags=$request->tag;
+        
         $post->viewcount=0;
 
         
@@ -80,6 +81,7 @@ class PostController extends Controller
             if(Auth::user()->category!="Subscriber"){
                 $post->user_id=auth()->user()->id;
                 $post->publication_status="Published";
+                
             }
             else{
                 $post->publication_status="Pending";
@@ -128,6 +130,12 @@ class PostController extends Controller
             $tag_post->tag_id=$tag->id;
             $tag_post->post_id=$post->id;
             $tag_post->save();
+        }
+        if($post->publication_status=="Published")
+        {
+            
+            $post->published_at=$post->created_at;
+            $post->save();
         }
         // dd(auth()->user()->category);
         if (Auth::check()) {

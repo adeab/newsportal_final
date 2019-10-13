@@ -13,6 +13,7 @@ class PageController extends Controller
         $subcategories=Category::where('parent_category', '!=', 0)->get();
         $topposts=Post::orderBy('published_at', 'DESC')->take(5)->get();
         $all_posts=Post::orderBy('published_at', 'DESC')->get();
+        // dd($all_posts[1]->id);
         
         return view('pages.dashboard', compact('categories', 'subcategories', 'topposts', 'all_posts'));
     }
