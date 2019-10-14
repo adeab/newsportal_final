@@ -31,7 +31,9 @@ Route::group(['prefix'=>'backend','middleware'=>'auth','namespace'=>'admin'],fun
     Route::get('/makecontributor/{post_id}', 'AdminPagesController@makecontributor')->name('admin.makecontributor');
     Route::get('/publishpost/{postid}', 'AdminPagesController@publishpost')->name('admin.publishpost');
     Route::post('/users/contributor', 'UserController@storecontributor')->name('admin.storecontributor');
-    Route::resource('users', 'UserController');
+    Route::get('/change_password', 'AdminPagesController@changepassword')->name('admin.change_password');
+    Route::post('/update_password', 'AdminPagesController@updatepassword')->name('admin.update_password');
+    Route::resource('users', 'UserController'); 
 });
 Route::resource('/posts', 'PostController');
 Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.upload');

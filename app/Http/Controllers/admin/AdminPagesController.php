@@ -246,6 +246,30 @@ class AdminPagesController extends Controller
         
          
     }
+    public function changepassword()
+    {
+        return view('adminpanel.password_change');
+    }
+    public function updatepassword(Request $request)
+    {
+        $this->validate($request, [
+            'oldpassword'=>'required',
+            'password' => 'required|confirmed'
+        ]);
+        $hashedPassword= Auth::user()->password;
+        if(Hash::check($request->oldpassword, $hashedpassword)){
+            $user = User::find(Auth::id());
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Auth::logout();
+            return redirect()->route('login')->with('success', "Password is Changed");
+
+        }
+        else{
+            return redirect()->back()->with('error', "Current Password is Invalid");
+        }   
+
+    }
     
         
 }

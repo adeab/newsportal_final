@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="{{ asset('storage/userImage/'. Auth::user()->profile_picture) }}"></a>
 	        		<ul class="dropdown-menu">
 						
-						<!--<li class="m_2"><a href="#"><i class="fa fa-shield"></i> Change Password</a></li>-->
+						<li class="m_2"><a href="{{ route('admin.change_password') }}"><i class="fa fa-shield"></i> Change Password</a></li>
 						<li class="m_2">
                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
