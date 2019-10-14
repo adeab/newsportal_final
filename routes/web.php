@@ -40,6 +40,6 @@ Route::post('ckeditor/upload', 'CkeditorController@upload')->name('ckeditor.uplo
 Route::get('/', 'PageController@dashboard');
 Route::get('বিভাগ/{param}', 'PageController@categorypage');
 Route::get('বিভাগ/{param}/{param2}', 'PageController@subcategorypage');
-
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/calback/{provider}', 'SocialController@callback');
+Route::get('/search', 'PostController@searchkeyword')->name('searchkeyword');

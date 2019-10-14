@@ -100,9 +100,11 @@ $(document).ready(function(){
         </div>
         <!-- Modal body -->
         <div class="modal-body">
-            <form action="/action_page.php" style="border: 2px solid #ccc;">
+            <form action="{{ route('searchkeyword') }}" style="border: 2px solid #ccc;">
+                @csrf 
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search" name="search">
+                  
                   <div class="input-group-btn">
                     <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
                   </div>

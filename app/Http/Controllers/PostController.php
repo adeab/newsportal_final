@@ -320,4 +320,14 @@ class PostController extends Controller
 
             }
     }
+    public function searchkeyword(Request $request)
+    {
+        // dd($request);
+        $keyword= $request->search;
+        $posts=Post::where('title', 'like', '%'.$keyword.'%')->orderBy('published_at', 'DESC')->paginate(20);
+        $type="keyword";
+
+        return view('pages.post.searchresult', compact('posts', 'type', 'keyword'));
+        
+    }
 }
