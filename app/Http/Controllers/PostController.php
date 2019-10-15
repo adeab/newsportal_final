@@ -190,9 +190,29 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post=Post::find($id);
-        $categories=Category::all();
-        return view('pages.post.edit', compact('post', 'categories'));
+        
+        //check if people with access is going to edit
+        if(auth()->user()->category=="Admin" || auth()->user()->category=="Contributor" || auth()->user()->category=="Editor")
+        {
+            $post=Post::find($id);
+            //if contributor, check if going to edit his own post
+            if(auth()->user()->category=="Contributor" and auth()->user()->id!=$post->user_id)
+            {
+                return view('pages.noaccess');
+
+            }
+            $categories=Category::all();
+            return view('pages.post.edit', compact('post', 'categories'));
+            
+
+        }
+        //else send to no access page
+        else
+        {
+            return view('pages.noaccess');
+        }
+
+        
     }
 
     /**
@@ -307,9 +327,19 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post=Post::find($id);
-        $post->delete();
-        if (auth()->user()->category=="Admin" || auth()->user()->category=="Editor" )
+
+         //check if people with access is going to edit
+         if(auth()->user()->category=="Admin" || auth()->user()->category=="Contributor" || auth()->user()->category=="Editor")
+         {
+            $post=Post::find($id);
+            //if contributor, check if going to edit his own post
+            if(auth()->user()->category=="Contributor" and auth()->user()->id!=$post->user_id)
+            {
+                return view('pages.noaccess');
+
+            }
+            $post->delete();
+            if (auth()->user()->category=="Admin" || auth()->user()->category=="Editor" )
             {
                 return redirect('backend/posts');
 
@@ -319,6 +349,18 @@ class PostController extends Controller
                 return redirect('backend/myposts');
 
             }
+             
+ 
+         }
+         //else send to no access page
+         else
+         {
+             return view('pages.noaccess');
+         }
+
+
+        
+       
     }
     public function searchkeyword(Request $request)
     {

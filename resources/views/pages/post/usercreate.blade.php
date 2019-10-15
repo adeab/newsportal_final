@@ -1,30 +1,12 @@
-@if (Auth::check())
-@if (Auth::user()->category=="Admin" || Auth::user()->category=="Editor" || Auth::user()->category=="Contributor")
-@php $layout="layouts.admin"; @endphp
-@else
-@php $layout="layouts.mainlayout"; @endphp
-@endif
-@else
-@php $layout="layouts.mainlayout"; @endphp
-@endif
-
-@extends($layout)
-
-@section('page_title')
-Edit Post 
-@endsection
-
-@section('body_content')
 <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
 
-<div class="graphs">
-    <div class="xs">
+<div class=" container graphs">
+    <div class="xs" style="background:#8f8c8c;padding: 30px;">
         <h4>Upload Post</h4>
           <div class="tab-content">
                    <div class="tab-pane active" id="horizontal-form"> 
-                   <form method="post" class="form-horizontal" action="{{route('posts.update', $post->id)}}" enctype="multipart/form-data" >
+                   <form method="post" class="form-horizontal" action="{{route('posts.store')}}" enctype="multipart/form-data" >
                             @csrf
-                            {{method_field('PATCH')}}
                             @if ($errors->any())
 							<div class="alert alert-danger">
 								<ul>
@@ -35,7 +17,7 @@ Edit Post
 							</div>
 						@endif
                             <div class="form-group">
-                                <label for="exampleInputFile">Upload Cover Picture to change (Supported formats: jpg,jpeg,png,bmp,tiff)</label>
+                                <label for="exampleInputFile">Upload Cover Picture (Supported formats: jpg,jpeg,png,bmp,tiff)</label>
                                 <input type="file" name="cover" id="uploadFile">
                                 {{-- <p class="help-block">Example block-level help text here.</p> --}}
                             </div>
@@ -43,43 +25,43 @@ Edit Post
                            <div class="form-group">
                                <label for="focusedinput" class="col-sm-2 control-label">Title</label>
                                <div class="col-sm-8">
-                               <input type="text" class="form-control1" value="{{$post->title}}" name="title" placeholder="Title">
+                                   <input type="text" class="form-control1" name="title" placeholder="Title">
                                </div>                               
                            </div>
                            <div class="form-group">
                                 <label for="txtarea1" class="col-sm-2 control-label">Body</label>
-                                <div class="col-sm-8"><textarea class="ckeditor" name="body">{{$post->body}}</textarea></div>
+                                <div class="col-sm-8"><textarea class="ckeditor" name="body"></textarea></div>
                             </div>
                             <div class="form-group">
                                <label for="selector1" class="col-sm-2 control-label">Category</label>
                                <div class="col-sm-8"><select name="category" id="selector1" class="form-control1">
-                                <option value="{{$post->category->id}}" selected>{{$post->category->name}}</option>
+                                <option disabled selected>Select</option>
                                 @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>    
                                 @endforeach
                                </select></div>
                            </div>
                            <div class="form-group">
-                            <label for="focusedinput" class="col-sm-2 control-label">SEO Keywords</label>
-                            <div class="col-sm-8">
-                            <input type="text" class="form-control1" name="seokey" placeholder="SEO Keywords" value="{{$post->seo_keywords}}">
-                            </div>                               
-                        </div>
-                        <div class="form-group">
-                            <label for="focusedinput" class="col-sm-2 control-label">Tags</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="tag" placeholder="Tags" value="{{$post->tags}}">
-                            </div>                               
-                        </div>
-                        <div class="form-group">
-                                <label for="focusedinput" class="col-sm-2 control-label">Reading Time</label>
-                                <div class="col-sm-2 col-lg-2 col-md-2">
-                                    <input type="text" class="form-control1" name="time" value="{{$post->reading_time}}">
-                                </div>
-                                <div class="col-sm-4 col-lg-4 col-md-4">
-                                    <p>Minutes Read</p>
+                                <label for="focusedinput" class="col-sm-2 control-label">SEO Keywords</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control1" name="seokey" placeholder="SEO Keywords">
                                 </div>                               
-                        </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="focusedinput" class="col-sm-2 control-label">Tags</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control1" name="tag" placeholder="Tags">
+                                </div>                               
+                            </div>
+                            <div class="form-group">
+                                    <label for="focusedinput" class="col-sm-2 control-label">Reading Time</label>
+                                    <div class="col-sm-2 col-lg-2 col-md-2">
+                                        <input type="text" class="form-control1" name="time" >
+                                    </div>
+                                    <div class="col-sm-4 col-lg-4 col-md-4">
+                                        <p>Minutes Read</p>
+                                    </div>                               
+                            </div>
                         <div class="panel-footer">
                                 @if (Auth::check())
                                 <div class="form-group">
@@ -109,7 +91,7 @@ Edit Post
                         
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                    <button class="btn-success btn">Update</button>
+                                    <button class="btn-success btn">Submit</button>
                                 </div>
                             </div>
                          </div>
@@ -127,13 +109,5 @@ Edit Post
         filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
         filebrowserUploadMethod: 'form'
     });
-    // $("#uploadFile").change(function(){
-    //         $('#image_preview').html("");
-            
-
-    //             $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files)+"'>");
-
-            
-    //     });
+    
 </script>
-@endsection
