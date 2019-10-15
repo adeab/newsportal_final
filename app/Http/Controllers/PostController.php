@@ -190,6 +190,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        if (Auth::check()) {
         
         //check if people with access is going to edit
         if(auth()->user()->category=="Admin" || auth()->user()->category=="Contributor" || auth()->user()->category=="Editor")
@@ -208,6 +209,11 @@ class PostController extends Controller
         }
         //else send to no access page
         else
+        {
+            return view('pages.noaccess');
+        }
+    }
+    else
         {
             return view('pages.noaccess');
         }
@@ -327,7 +333,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-
+        if (Auth::check()) {
          //check if people with access is going to edit
          if(auth()->user()->category=="Admin" || auth()->user()->category=="Contributor" || auth()->user()->category=="Editor")
          {
@@ -357,7 +363,11 @@ class PostController extends Controller
          {
              return view('pages.noaccess');
          }
-
+        }
+        else
+         {
+             return view('pages.noaccess');
+         }
 
         
        
