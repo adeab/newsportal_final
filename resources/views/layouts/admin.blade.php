@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{url('/backend/dashboard')}}"><img style="margin: -9px;" src="{{asset('frontend/img/agaiacholo.png')}}"></a>
+                <a class="navbar-brand" href="{{url('/backend/dashboard')}}"><img style="margin: -9px;height: 38px;" src="{{asset('frontend/img/Logo Basic.png')}}"></a>
             </div>
           
             <ul class="nav navbar-nav navbar-right">
@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-facebook fa-fw nav_icon"></i>Instant Article</a>
+                            <a href="index.html"><i style="font-size: 16px;" class="fa fa-facebook fa-fw nav_icon"></i>Instant Article</a>
                         </li>
                         
                        

@@ -65,7 +65,7 @@ $(document).ready(function(){
       <div class="dropdown">
            <i class="far fa-user" data-toggle="dropdown"></i>
             <span class="caret"></span>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="top: 33px;left: -53px;">
               @if (Auth::check())
               <li class="m_2">
                   <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a>
@@ -74,7 +74,7 @@ $(document).ready(function(){
                   </form>
               </li>
               @else
-                <li style="float:none;"><a href="{{url('/auth/redirect/facebook')}}"><i class="fa fa-facebook"></i>Login with Facebook</a></li>
+                <li style="float:none;width: 188px;"><a href="{{url('/auth/redirect/facebook')}}"><i class="fab fa-facebook-f"></i> Login with Facebook</a></li>
                 {{-- <li><button type="button" class="btn ">logout</button></li> --}}
               @endif
               
@@ -96,7 +96,7 @@ $(document).ready(function(){
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Search Here</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
         </div>
         <!-- Modal body -->
         <div class="modal-body">
@@ -119,7 +119,9 @@ $(document).ready(function(){
   </div>
 </section>
 </div>
+<style>
 
+</style>
 <!-- header slider area end -->
 <!-- navbar area start -->
 <div id="navbar" >
@@ -131,11 +133,21 @@ $(document).ready(function(){
   <div  class="collapse navbar-collapse" id="collapsibleNavbar">
   	<div class="menu_middle">
 	    <ul class="navbar-nav">
-		      <li class="nav-item ">
-            <a class="nav-link " href="{{url('বিভাগ/বাংলাদেশ')}}">বাংলাদেশ</a>
+		      <li class="nav-item dropdown">
+            <a class="nav-link dropbtn" href="{{url('বিভাগ/বাংলাদেশ')}}">বাংলাদেশ</a>
+            <div class="dropdown-content">
+              <a href="#">আপনি-ই সাংবাদিক</a>
+              <a href="#">ইনসাইড বাংলাদেশ</a>
+              <a href="#">রাজনীতি নাকি জননীতি</a>
+            </div>
 		      </li>
-		      <li class="nav-item">
-		        <a class="nav-link" href="{{url('বিভাগ/খেলা ও ধুলা')}}">খেলা ও ধুলা</a>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropbtn" href="{{url('বিভাগ/খেলা ও ধুলা')}}">খেলা ও ধুলা</a>
+            <div class="dropdown-content">
+              <a href="#">ক্রিকেট</a>
+              <a href="#">অ্যাসোসিয়েশনের</a>
+              <a href="#">ফিনিক্স</a>
+            </div>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="{{url('বিভাগ/সিনেমা হলের গলি')}}">সিনেমা হলের গলি</a>
