@@ -46,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <a class="navbar-brand" href="{{url('/backend/dashboard')}}"><img style="margin: -9px;height: 38px;" src="{{asset('frontend/img/Logo Basic.png')}}"></a>
             </div>
           
-            <ul class="nav navbar-nav navbar-right">
+            {{-- <ul class="nav navbar-nav navbar-right">
 				
 			    <li class="dropdown">
                 
@@ -66,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	        		</ul>
 	      		</li>
-			</ul>
+			</ul> --}}
 			
             
             <div class="navbar-default sidebar" role="navigation">
@@ -113,6 +113,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li>
                             <a href="index.html"><i style="font-size: 16px;" class="fa fa-facebook fa-fw nav_icon"></i>Instant Article</a>
+                        </li>
+                        <hr>
+                        <li><a href="{{ route('admin.change_password') }}"><i class="fa fa-shield fa-fw nav_icon"></i> Change Password</a></li>
+						<li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-fw nav_icon"></i> Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
                         
                        
