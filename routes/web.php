@@ -43,3 +43,4 @@ Route::get('বিভাগ/{param}/{param2}', 'PageController@subcategorypage')
 Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
 Route::get('/calback/{provider}', 'SocialController@callback');
 Route::get('/search', 'PostController@searchkeyword')->name('searchkeyword');
+Route::get('/searchtag/{tag}', 'PostController@searchtag');

@@ -330,4 +330,16 @@ class PostController extends Controller
         return view('pages.post.searchresult', compact('posts', 'type', 'keyword'));
         
     }
+    public function searchtag($tag)
+    {
+        // dd($request);
+        $keyword= $tag;
+        $tagfind=Tag::where('tagname', $keyword)->first();
+        $tagid=$tagfind->id;
+        $posts=Post::where('tags', 'like', '%'.$keyword.'%')->orderBy('published_at', 'DESC')->paginate(20);
+        $type="tag";
+
+        return view('pages.post.searchresult', compact('posts', 'type', 'keyword'));
+        
+    }
 }

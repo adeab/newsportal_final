@@ -48,7 +48,7 @@
             <ul>
                 <li class="tag_1"> <i class="fas fa-tags"></i> ট্যাগ</li>
                 @foreach ($tags as $tag)
-                <li>{{$tag->tag->tagname}}</li>
+                <a href="{{url('searchtag/'.$tag->tag->tagname)}}"><li>{{$tag->tag->tagname}}</li></a>
                 @endforeach
             </ul>    
         </div>
